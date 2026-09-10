@@ -1,0 +1,77 @@
+{
+    "$schema": "https://getcomposer.org/schema.json",
+    "name": "cedriekvos/laravel-composer-audit",
+    "type": "library",
+    "description": "Audit installed Composer packages on a schedule and email the maintainer about newly reported vulnerabilities.",
+    "keywords": [
+        "laravel",
+        "composer",
+        "audit",
+        "security",
+        "vulnerabilities"
+    ],
+    "license": "MIT",
+    "require": {
+        "php": "8.4.*",
+        "illuminate/console": "^13.8",
+        "illuminate/contracts": "^13.8",
+        "illuminate/filesystem": "^13.8",
+        "illuminate/mail": "^13.8",
+        "illuminate/support": "^13.8"
+    },
+    "require-dev": {
+        "driftingly/rector-laravel": "^2",
+        "larastan/larastan": "^3",
+        "laravel/pint": "^1.27",
+        "orchestra/testbench": "^11.2",
+        "pestphp/pest": "^5.0",
+        "pestphp/pest-plugin-laravel": "^5.0",
+        "pestphp/pest-plugin-type-coverage": "^5.0",
+        "rector/rector": "^2"
+    },
+    "autoload": {
+        "psr-4": {
+            "CedriekVos\\LaravelComposerAudit\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "CedriekVos\\LaravelComposerAudit\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "CedriekVos\\LaravelComposerAudit\\LaravelComposerAuditServiceProvider"
+            ]
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/pest",
+        "qa": [
+            "Composer\\Config::disableProcessTimeout",
+            "composer validate",
+            "vendor/bin/rector process --dry-run --clear-cache",
+            "vendor/bin/pint --test --cache-file=/dev/null",
+            "vendor/bin/phpstan clear-result-cache",
+            "vendor/bin/phpstan analyse",
+            "vendor/bin/pest --coverage --min=100",
+            "vendor/bin/pest --type-coverage --min=100",
+            "vendor/bin/pest --mutate --min=100 --no-cache",
+            "echo QA passed"
+        ],
+        "fix-qa": [
+            "vendor/bin/rector process",
+            "vendor/bin/pint",
+            "echo QA fixed"
+        ]
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}

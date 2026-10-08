@@ -5,6 +5,13 @@ Notable changes to this project are listed in this file. The format is based on
 
 ## [Unreleased]
 
+### Changed
+
+- The alert email names the application it is about, so alerts can be told apart when the package runs
+  in several projects. The subject is now `[<APP_NAME>] Composer vulnerability alert`, and the body
+  mentions the `APP_URL`. Update mail filters that match the old subject exactly. If you published the
+  email template, add `{{ config('app.url') }}` to your copy.
+
 ## [1.0.0] - 2026-09-10
 
 First release.

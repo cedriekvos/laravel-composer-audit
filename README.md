@@ -97,9 +97,11 @@ decide what gets reported:
 Every severity is reported. There is no threshold, because you're the best judge of what's urgent in
 your application.
 
-The email has the subject **Composer vulnerability alert** and lists the package, advisory ID, title and
-severity of each vulnerability. It is sent from your application's default `mail.from` address, directly
-during the check rather than through the queue, so no queue worker is needed.
+The email lists the package, advisory ID, title and severity of each vulnerability. So that you can tell
+alerts apart when the package runs in several projects, the subject starts with your `APP_NAME`, as in
+**[My Blog] Composer vulnerability alert**, and the body names the application by its `APP_URL`. It is
+sent from your application's default `mail.from` address, directly during the check rather than through
+the queue, so no queue worker is needed.
 
 ### Running the check by hand
 

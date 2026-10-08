@@ -5,6 +5,8 @@ Notable changes to this project are listed in this file. The format is based on
 
 ## [Unreleased]
 
+## [1.1.0] - 2026-10-08
+
 ### Changed
 
 - The alert email names the application it is about, so alerts can be told apart when the package runs
@@ -30,5 +32,6 @@ First release.
 - A publishable config file and email template, and a `laravel-composer-audit` filesystem disk for
   the mute state that your application can override.
 
-[unreleased]: https://github.com/cedriekvos/laravel-composer-audit/compare/v1.0.0...HEAD
-[1.0.0]: https://github.com/cedriekvos/laravel-composer-audit/releases/tag/v1.0.0
+[unreleased]: https://github.com/cedriekvos/laravel-composer-audit/compare/1.1.0...HEAD
+[1.1.0]: https://github.com/cedriekvos/laravel-composer-audit/compare/1.0.0...1.1.0
+[1.0.0]: https://github.com/cedriekvos/laravel-composer-audit/releases/tag/1.0.0
